@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 
@@ -23,12 +26,22 @@ public class Product implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	
+	@Column(columnDefinition = "TEXT")
 	private String description;
 	private Double price;
 	private String imgUrl;
 	
 	@Column(columnDefinition = "TimeSTAMP WITHOUT TIME ZONE")
 	private Instant date; 
+	
+	
+	//Mapear BD no modelo relacional
+	@ManyToMany
+	@JoinTable(name = "tb_product_category",
+		joinColumns = @JoinColumn(name = "product_id"),
+		inverseJoinColumns = @JoinColumn(name = "category_id")
+			)
 	
 	Set<Category> categories =  new HashSet<>();
 	
