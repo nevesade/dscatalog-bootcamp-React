@@ -110,7 +110,7 @@ public class Product implements Serializable {
 		return categories;
 	}
 	
-	//Comparar um produto com outro
+	//Comparar um produto com outro, não permito o mesmo product na BD
 
 	@Override
 	public int hashCode() {
