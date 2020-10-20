@@ -15,4 +15,7 @@
 
 .catalog-products{
     margin-top: 42px;;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
