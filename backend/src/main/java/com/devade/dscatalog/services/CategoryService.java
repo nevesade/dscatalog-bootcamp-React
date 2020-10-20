@@ -35,10 +35,11 @@ public class CategoryService {
 		List<CategoryDTO> listDto = new ArrayList<>();
 		for(Category cat : list) {
 			listDto.add(new CategoryDTO(cat));
-		} */
+		} 
 		
+		return listDto;
 		
-		
+		*/
 	}
 
 	
