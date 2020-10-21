@@ -1,6 +1,6 @@
-import Axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ProductsResponse } from '../../core/types/Products';
 import { makeRequest } from '../../core/utilis/request';
 import ProductCard from './components/ProductCard';
 import './styles.scss';
@@ -15,6 +15,8 @@ const Catalog = () => {
     //quando a lista de produtos estiver disponivel,
     //popular um estado no componente, e listar os produtos dinâmicamente
 
+    const [productsResponse, setProductsResponse ] = useState<ProductsResponse>();
+    console.log(productsResponse);
     //quando o componente iniciar, buscar a lista de produots (opção de o fazer via um fetch ou axios(makerequest por exemplo))
 
     //limitaçoes do fetch
@@ -29,7 +31,7 @@ const Catalog = () => {
         }
 
         makeRequest({ url: '/products', params})
-         .then(response => console.log(response));
+         .then(response =>setProductsResponse(response.data));
 
 
 
@@ -45,14 +47,14 @@ const Catalog = () => {
             </h1>
     
             <div className="catalog-products">
-                <Link to="/products/1"><ProductCard /></Link>
-                <Link to="/products/2"><ProductCard /></Link>
-                <Link to="/products/3"><ProductCard /></Link>
-                <Link to="/products/4"><ProductCard /></Link>
-                <Link to="/products/5"><ProductCard /></Link>
-                <Link to="/products/6"><ProductCard /></Link>
-                <Link to="/products/7"><ProductCard /></Link>
-                <Link to="/products/8"><ProductCard /></Link>
+                {productsResponse?.content.map( product => (
+                    <Link to="/products/1" key={product.id} >
+                        <ProductCard />
+                    </Link>
+                    
+                    
+                 ) )}
+                
                
                 
             </div>
