@@ -1,5 +1,7 @@
+import Axios from 'axios';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { makeRequest } from '../../core/utilis/request';
 import ProductCard from './components/ProductCard';
 import './styles.scss';
 
@@ -8,16 +10,26 @@ import './styles.scss';
 const Catalog = () => {
 
 
-    //quando o componente iniciar, buscar a lista de produots
+    
 
     //quando a lista de produtos estiver disponivel,
     //popular um estado no componente, e listar os produtos dinâmicamente
 
+    //quando o componente iniciar, buscar a lista de produots (opção de o fazer via um fetch ou axios(makerequest por exemplo))
+
+    //limitaçoes do fetch
+    //muito verboso
+    // não tem suporte nativo para ler o progresso de upload de arquivo
+    // não te  suporte nativo para enviar query strings
     useEffect(() => {
 
-        fetch('http://localhost:3000/products')
-        .then(response => response.json)
-        .then(response => console.log(response));
+        const params = {
+            page: 0,
+            linesPerPage: 12
+        }
+
+        makeRequest({ url: '/products', params})
+         .then(response => console.log(response));
 
 
 

@@ -9,10 +9,12 @@ type ParamsType = {
     productId: string;
 }
 
+   
 const ProductDetails = () =>{
 
     const { productId } = useParams<ParamsType>();
     
+
     console.log(productId);
 
     return (
