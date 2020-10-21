@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { ProductsResponse } from '../../core/types/Products';
 import { makeRequest } from '../../core/utilis/request';
 import ProductCard from './components/ProductCard';
+import ProductCardLoader from './components/ProductCardLoader';
 import './styles.scss';
 
 
@@ -17,6 +19,8 @@ const Catalog = () => {
 
     const [productsResponse, setProductsResponse ] = useState<ProductsResponse>();
     console.log(productsResponse);
+    const [isLoading, setIsLoadind] = useState(false);
+
     //quando o componente iniciar, buscar a lista de produots (opção de o fazer via um fetch ou axios(makerequest por exemplo))
 
     //limitaçoes do fetch
@@ -30,10 +34,16 @@ const Catalog = () => {
             linesPerPage: 12
             
         }
+        
 
+        //iniciar o loader
+        setIsLoadind(true);
         makeRequest({ url: '/products', params})
-         .then(response =>setProductsResponse(response.data));
-
+        .then(response =>setProductsResponse(response.data))
+        .finally(() =>  {
+            //finalizar o loader
+            setIsLoadind(false);
+        })
 
 
     }, []);
@@ -48,13 +58,16 @@ const Catalog = () => {
             </h1>
     
             <div className="catalog-products">
-                {productsResponse?.content.map( product => (
+                {isLoading? < ProductCardLoader /> : (
+                    productsResponse?.content.map( product => (
                     <Link to={`/products/${product.id}`} key={product.id} >
                         <ProductCard product = {product} />
                     </Link>
                     
                     
-                 ) )}
+                ) )
+                )}
+                
                 
                
                 
