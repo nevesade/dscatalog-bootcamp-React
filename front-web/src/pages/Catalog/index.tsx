@@ -28,6 +28,7 @@ const Catalog = () => {
         const params = {
             page: 0,
             linesPerPage: 12
+            
         }
 
         makeRequest({ url: '/products', params})
@@ -49,7 +50,7 @@ const Catalog = () => {
             <div className="catalog-products">
                 {productsResponse?.content.map( product => (
                     <Link to="/products/1" key={product.id} >
-                        <ProductCard />
+                        <ProductCard product = {product} />
                     </Link>
                     
                     
