@@ -1,0 +1,37 @@
+.product-details-container {
+  margin-top: 40px;
+  padding-left: 40px;
+  padding-bottom: 40px;
+}
+
+.product-details {
+  padding: 50px 60px 90px 60px;
+  /*
+    padding-top: 50px;
+    padding-right: 60px;
+    padding-bottom: 90px ;
+    padding-left: 60px;
+    */
+}
+
+.icon-bocak {
+  color: #407bff;
+  transform: rotate(-180deg);
+  margin-right: 30px;
+}
+
+.product-details-goback {
+  display: flex;
+  align-items: center;
+}
+
+.text-goback {
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+  letter-spacing: -0.015em;
+
+  color: #263238;
+  text-transform: uppercase;
+}
