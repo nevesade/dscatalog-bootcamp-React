@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import './styles.scss';
 import { ReactComponent as ArrowIcon } from '../../../../core/assets/images/arrow.svg';
 import { ReactComponent as ProductImage } from '../../../../core/assets/images/product.svg';
+import ProductPrice from '../../../../core/assets/styles/components/ProductPrice';
 
 type ParamsType = {
     productId: string;
@@ -32,11 +33,13 @@ const ProductDetails = () =>{
                         <h1 className="product-details-name">
                             Computador Desktop - Intel Core i7
                         </h1>
+                        <ProductPrice price="3.7999,00"/>
                       </div>
                       <div className="col-6 product-details-card ">
                           <h1 className="product-description-title">
                               Descriçao do Produto
                          </h1>
+                         
                          <p className="product-description-text"> 
                          Seja um mestre em multitarefas com a capacidade para exibir quatro
                           aplicativos simultâneos na tela. A tela está ficando abarrotada?
@@ -45,6 +48,7 @@ const ProductDetails = () =>{
                             principais configurações são reunidas em uma única tela de fácil acesso.
 
                          </p>
+                         
                     </div>
 
                      
