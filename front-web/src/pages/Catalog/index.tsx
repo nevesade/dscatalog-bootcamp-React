@@ -21,6 +21,7 @@ const Catalog = () => {
     const [productsResponse, setProductsResponse ] = useState<ProductsResponse>();
     console.log(productsResponse);
     const [isLoading, setIsLoadind] = useState(false);
+    const [activePage, setActivePage] = useState(0);
 
     //quando o componente iniciar, buscar a lista de produots (opção de o fazer via um fetch ou axios(makerequest por exemplo))
 
@@ -31,7 +32,7 @@ const Catalog = () => {
     useEffect(() => {
 
         const params = {
-            page: 0,
+            page: activePage,
             linesPerPage: 12
             
         }
@@ -47,7 +48,7 @@ const Catalog = () => {
         })
 
 
-    }, []);
+    }, [activePage]);
 
 
     
@@ -73,7 +74,16 @@ const Catalog = () => {
                
                 
             </div>
-            <Pagination/>
+            {productsResponse && (
+            
+            
+            <Pagination
+                 totalPages={productsResponse.totalPages}
+                activePage={activePage}
+                onChange= {page => setActivePage(page)}
+            />
+            
+            )}
         </div>
     );
 }

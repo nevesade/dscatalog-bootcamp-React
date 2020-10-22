@@ -4,7 +4,7 @@ import './styles.scss';
 import { ReactComponent as ArrowIcon } from '../../../../core/assets/images/arrow.svg';
 import ProductPrice from '../../../../core/assets/styles/components/ProductPrice';
 import { makeRequest } from '../../../../core/utilis/request';
-import { Product } from '../../../../core/types/Products';
+import { Product } from '../../../../core/types/Products';  
 import ProductDescriptionLoader from '../Loaders/ProductDescriptionLoader';
 import ProductInfoLoader from '../Loaders/ProductInfoLoader';
 
