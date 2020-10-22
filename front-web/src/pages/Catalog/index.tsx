@@ -6,6 +6,7 @@ import { makeRequest } from '../../core/utilis/request';
 import ProductCard from './components/ProductCard';
 import ProductCardLoader from './components/Loaders/ProductCardLoader';
 import './styles.scss';
+import Pagination from '../../core/assets/styles/components/Pagination';
 
 
 
@@ -72,6 +73,7 @@ const Catalog = () => {
                
                 
             </div>
+            <Pagination/>
         </div>
     );
 }
