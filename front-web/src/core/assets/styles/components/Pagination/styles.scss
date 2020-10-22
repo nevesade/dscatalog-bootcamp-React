@@ -38,8 +38,8 @@
     
     transform: rotate(-180deg);
     margin-right: 25px;
-    color: #E1E1E1;
-    cursor: pointer;
+    
+  
   }
 
   
@@ -47,6 +47,18 @@
     
     margin-right: 15px;
 
-    color: #407BFF;
+    
     cursor: pointer;
+  }
+
+  .page-active{
+    cursor: pointer;
+    color: #407BFF;
+    
+  }
+
+  .page-inactive{
+    cursor: pointer;
+    color: #E1E1E1;
+    pointer-events: none;
   }
