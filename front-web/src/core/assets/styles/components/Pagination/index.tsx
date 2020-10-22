@@ -28,7 +28,7 @@ const Pagination = ( { totalPages,activePage,onChange}: Props) => {
                     onClick={() => onChange(item)} 
                    
                 >
-                    {item }
+                    {item + 1 }
                 </div>
 
             ))}
