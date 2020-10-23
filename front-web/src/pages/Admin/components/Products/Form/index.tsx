@@ -1,13 +1,72 @@
-import React from  'react';
+import React, { useState } from 'react';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
 
 const Form = () => {
+
+    const [name, setNAme] = useState('');
+    const [price, setPrice] = useState('');
+    const [category, setCategory] = useState('computadores');
+
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNAme(event.target.value);
+    }
+
+    const handleOnChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPrice(event.target.value);
+    }
+    const handleOnChangeCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setCategory(event.target.value);
+    }
+
+    /*
+    const handleClick = () => {
+
+        setNAme('devsuperior')
+    }
+
+    */
+
     return (
-        <BaseForm title="CADASTRAR UM PRODUTO" > 
+        <BaseForm title="cadastrar um produto" >
+            <h1 className="my-5">
+                Nome:{name} <br />
+                Preço:{price} <br/>
+                Categoria : {category}
+            </h1>
+
             <div className="row" >
                 <div className="col-6">
-                    <input type="text" className="form-control"/>
+                    <input
+                        value={name}
+                        type="text"
+                        className="form-control mb-5"
+                        onChange={handleOnChange}
+                        placeholder="Nome do produto"
+
+
+                    />
+
+
+                    <select value={category} className="form-control mb-5" onChange={handleOnChangeCategory}>
+                        <option value="livros">Livros</option>
+                        <option value="computadores">Computadores</option>
+                        <option  value="electronicos">Electrônicos</option>
+                    
+                    </select>
+
+
+                    <input
+                        value={price}
+                        type="text"
+                        className="form-control"
+                        onChange={handleOnChangePrice}
+                        placeholder="Preço"
+
+                    />
+
+
+
                 </div>
 
             </div>
