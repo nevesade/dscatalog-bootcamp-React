@@ -26,7 +26,7 @@ const Navbar = () =>(
                     
                 </li>
                 <li>
-                <NavLink to="/admi">
+                <NavLink to="/admin">
                         ADMIN
                     </NavLink>
                 </li>
