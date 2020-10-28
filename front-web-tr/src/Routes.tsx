@@ -1,3 +1,4 @@
+//import { userInfo } from 'os';
 import React from 'react';
 import {BrowserRouter, Switch,Route} from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -13,7 +14,7 @@ const Routes = () => (
             <Home/>
 
         </Route>
-        <Route path="/Search">
+        <Route path="/Search" exact>
             <Search/>
 
         </Route>

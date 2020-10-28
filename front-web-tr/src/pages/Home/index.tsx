@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import './styles.scss';
 
@@ -32,7 +33,14 @@ const Home = () => (
          
 
         </div>
-        <Button/>
+
+        <Link to="./search">
+
+            <  Button text="Começar"/>
+        
+        </Link>
+
+               
 
     </div>
 )

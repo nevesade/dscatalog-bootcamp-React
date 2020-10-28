@@ -1,10 +1,16 @@
 import React from 'react';
 import './styles.scss';
 
-const Button = () => (
+
+type Props = {
+    text: string;
+}
+const Button = ({text} : Props) => (
+
 
     <button className="btn btn-primary btn-info">
-        Comerçar
+
+        <h5> {text}</h5>    
 
     </button>
 
