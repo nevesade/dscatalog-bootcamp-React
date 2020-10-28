@@ -13,11 +13,13 @@ type ParamsType = {
 }
 
 
-const ProductDetails = () => {
+const ProductDetails = () => { 
 
     const { productId } = useParams<ParamsType>();
     const [product, setProduct] = useState<Product>();
     const [isLoading, setIsLoadind] = useState(false);
+
+    
 
 
     console.log(isLoading);
