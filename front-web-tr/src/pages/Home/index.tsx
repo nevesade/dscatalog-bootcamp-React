@@ -36,7 +36,7 @@ const Home = () => (
 
         <Link to="./search">
 
-            <  Button text="Começar"/>
+            <Button text="Começar"/>
         
         </Link>
 

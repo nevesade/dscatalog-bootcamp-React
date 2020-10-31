@@ -8,6 +8,8 @@
     location: string;
     created_at: Date;
     avatar_url:string;
+    following: number;
+    html_url: string;
 }
 
 
@@ -20,4 +22,6 @@ export type UserInfos = {
     location: string;
     created_at: Date;
     avatar_url:string;
+    following: number;
+    html_url: string;
  }
