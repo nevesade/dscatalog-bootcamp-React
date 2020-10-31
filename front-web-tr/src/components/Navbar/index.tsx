@@ -8,7 +8,7 @@ const Navbar = () => (
     <nav className="row bg-primary main-nav ">
         <div className="col-4">
             <Link to="/" className="nav-logo-text"> 
-                <h4> Bootcamp DevSuperior </h4>
+                <h5> Bootcamp DevSuperior </h5>
 
             </Link>
 

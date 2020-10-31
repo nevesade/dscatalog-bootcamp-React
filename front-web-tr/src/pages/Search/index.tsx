@@ -1,8 +1,6 @@
-import moment from 'moment';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import dayjs from 'dayjs';
 import React, { useState } from 'react';
-
-
-
 import { userResponse } from '../../core/types/UserInfos';
 import { makeRequest } from '../../core/utils/request';
 import ImageLoader from './Components/Loaders/ImageLoader';
@@ -15,107 +13,124 @@ import './styles.scss';
 
 const SearchInfos = () => {
 
-
-
-
     const [name, setName] = useState('');
 
     const [userResponse, setUserResponse] = useState<userResponse>();
 
-    //console.log(userResponse);
 
     const [isLoading, setIsLoading] = useState(false);
 
     const handleOnchange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
-
-
         setName(event.target.value);
-
-
 
     }
 
-    const [showResults, setShowResults] = useState(false)
+    const [showSearch, setshowSearch] = useState(false)
 
-    const onClick = () => setShowResults(true)
-
-
-
-
-
-
+    const onClick = () => setshowSearch(true)
 
 
     const ImageUser = () => (
 
 
-
-
-        <div   >
+        <div>
             <img src={userResponse?.avatar_url} alt="imagem do utilizador" className="image-user" />
 
 
-            <button className="btn btn-primary btn-search  btn-profile  "  >
-                Ver perfil
+            <div className="btn-view-profile">
+                <a href={userResponse?.html_url} className="btn-profile "  >
+                    Ver  perfil
+
+                </a>
+
+            </div>
 
 
-
-
-                </button>
         </div>
 
-
-
-
-
-
     )
+
+
 
     const UserInfosSearch = () => (
 
         <div className="details-infos-user ">
 
 
+            <div className=" row View-repositotory-follow">
+                <div className="repos-follow">
 
+                    <div className=" alert-repos" >
+                        <div className="alert-infos-repos">
+                            Repositórios públicos: {userResponse?.public_repos}
+                        </div>
 
-            <h5>
-                Nome : {userResponse?.login}
-            </h5>
+                    </div>
 
-            <h5>
-                Repositórios públicos:  {userResponse?.public_repos}
-            </h5>
+                    <div className=" alert-followers" >
+                        <div className="alert-infos-followers">
+                            Seguidores: {userResponse?.followers}
+                        </div>
 
-            <h5>
-                Localide : {userResponse?.location}
-            </h5>
-            <h5>
-                following : {userResponse?.following}
-            </h5>
+                    </div>
 
+                    <div className=" alert-following" >
+                        <div className="alert-infos-following">
+                            Seguidores: {userResponse?.following}
+                        </div>
 
-            <h5>
-                Membro desde:  {moment(userResponse?.created_at).format("DD/MM/YYYY")}
-            </h5>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div className="view-search-informations">
+
+                <h4>Informações</h4>
+
+                <div className=" informations">
+
+                    <div className="alert-company" >
+                        <div className=" alert-informations-company">
+                            <span className="span-company" >Empresa:    </span>   {userResponse?.company}
+                        </div>
+
+                    </div>
+
+                    <div className="alert-blog" >
+                        <div className=" alert-informations-blog">
+                            <span className="span-blog">Website/Blog:</span> {userResponse?.blog}
+                        </div>
+
+                    </div>
+
+                    <div className="alert-location" >
+                        <div className=" alert-informations-location">
+                            <span className="span-location">Localidade:</span> {userResponse?.location}
+                        </div>
+
+                    </div>
+
+                    <div className="alert-created_at" >
+                        <div className=" alert-informations-created_at">
+                            <span className="span-created_at">Membro desde:</span> {dayjs(userResponse?.created_at).format("DD/MM/YYYY")}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
     )
 
-
-
-
-
-
-
-
-
-
-
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 
         event.preventDefault();
-
 
         //iniciar loarder
         setIsLoading(true);
@@ -127,16 +142,10 @@ const SearchInfos = () => {
 
                 setIsLoading(false);
 
-
             })
-
-
-
     }
 
     return (
-
-
 
         <form onSubmit={handleSubmit} >
 
@@ -147,7 +156,6 @@ const SearchInfos = () => {
                             Encontre um perfil Github
                         </h4>
 
-
                         <div className="input-search  ">
                             <input
                                 value={name}
@@ -157,63 +165,31 @@ const SearchInfos = () => {
                                 className="form-control"
                                 onChange={handleOnchange}
 
-
-
                             ></input>
                         </div>
 
 
                         <button className="btn btn-primary btn-search " onClick={onClick} >
                             Encontrar
-
-
                         </button>
 
-
-
-
-
-
-
-                    </div>
-
-
-
+                   </div>
 
                 </div>
 
+           </div>
 
+
+
+            <div className={`details-users container  ${showSearch ? 'showDetails-Users' : ''}`} >
+
+                {isLoading ? <ImageLoader/> : showSearch ? <ImageUser /> : null}
+
+                {isLoading ? <InfoLoader /> : showSearch ? <UserInfosSearch /> : null}
             </div>
-
-
-
-
-
-            <div className="details-users container  " >
-
-                {isLoading ? <ImageLoader
-
-                /> : showResults ? <ImageUser /> : null}
-
-
-                {isLoading ? <InfoLoader /> : showResults ? <UserInfosSearch /> : null}
-
-
-
-
-
-
-
-            </div>
-
 
 
         </form>
-
-
-
-
-
 
     );
 
