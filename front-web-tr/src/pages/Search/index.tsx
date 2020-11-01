@@ -77,7 +77,7 @@ const SearchInfos = () => {
 
                     <div className=" alert-following" >
                         <div className="alert-infos-following">
-                            Seguidores: {userResponse?.following}
+                            Seguindo: {userResponse?.following}
                         </div>
 
                     </div>
