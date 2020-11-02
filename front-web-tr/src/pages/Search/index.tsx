@@ -159,7 +159,7 @@ const SearchInfos = () => {
                         <div className="input-search  ">
                             <input
                                 value={name}
-                                //name="name"
+                                name="name"
                                 type="text"
                                 placeholder="Usuário Github"
                                 className="form-control"
