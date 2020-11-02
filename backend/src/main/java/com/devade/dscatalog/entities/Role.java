@@ -22,7 +22,7 @@ import javax.persistence.Table;
 	private String authority;
 	
 	
-	public Role (){
+	public Role(){
 		
 	}
 
