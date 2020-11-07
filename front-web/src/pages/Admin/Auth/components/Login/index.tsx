@@ -3,25 +3,44 @@ import { Link } from 'react-router-dom';
 import ButtonIcon from '../../../../../core/assets/styles/components/ButtonIcon';
 import AuthCard from '../Card';
 import './styles.scss';
+import { useForm } from 'react-hook-form';
 
+type FormData = {
 
+    email: string;
+    password: string;
+}
 
 const Login = () => {
 
+    const { register, handleSubmit } = useForm<FormData>(); // initialize the hook
+
+    const onSubmit = (data: FormData) => {
+
+        console.log(data);
+
+        //Chamar API de autentificaçaõ
+
+    }
+
     return (
-        
+
         <AuthCard title="login">
-            <form className="login-form">
-                <input 
-                    type="email" 
+            <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
+                <input
+                    type="email"
                     className="form-control input-base margin-bottom-30"
-                    placeholder="Email">
-                </input>
-                <input 
-                    type="password" 
+                    placeholder="Email"
+                    name="email"
+                    ref={register}
+                 />
+                <input
+                    type="password"
                     className="form-control input-base"
-                    placeholder="Senha">
-                </input>
+                    placeholder="Senha"
+                    name="password"
+                    ref={register}
+                />
                 <Link to="/admin/auth/recover" className="login-link-recover">
                     Esqueci a senha?
                 </Link>

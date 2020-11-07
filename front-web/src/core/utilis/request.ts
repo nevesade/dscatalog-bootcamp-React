@@ -8,7 +8,7 @@ type RequestParams = {
     params?: object;
 }
 
-const BASE_url = 'http://localhost:3003';
+const BASE_url = 'http://localhost:3000';
 
  export const makeRequest = ({method ='GET', url, data, params } : RequestParams) =>{
 
