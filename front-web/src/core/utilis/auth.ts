@@ -1,2 +1,2 @@
 export const CLIENT_ID = 'dscatalog';
-export const CLIENT_SECRET =  'dscatalog123';
+export const CLIENT_SECRET=  'dscatalog123';

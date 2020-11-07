@@ -17,7 +17,7 @@ type LoginData = {
     password: string;
 }
 
-const BASE_url = 'http://localhost:3000';
+const BASE_url = 'http://localhost:8080';
 
  export const makeRequest = ({method ='GET', url, data, params, headers } : RequestParams) =>{
 
@@ -30,12 +30,12 @@ const BASE_url = 'http://localhost:3000';
     });
 }
 
-export const makeLogin = (loginData: LoginData) =>{
+export const makeLogin = (loginData: LoginData) => {
 
-    const token = `${CLIENT_ID} : ${CLIENT_SECRET}`;
+    const token = `${CLIENT_ID}:${CLIENT_SECRET}`;
 
     const headers = {
-        Authorization: `Basic  ${window.btoa(token)}`,
+        Authorization: `Basic ${window.btoa(token)}`,
         'Content-Type': 'application/x-www-form-urlencoded'
     }
 
@@ -44,8 +44,8 @@ export const makeLogin = (loginData: LoginData) =>{
 
     //username=maria@gmail.com&password=123456&grant_type=password
 
-    const payload = qs.stringify({ ...loginData, grant_type: 'password'})
+    const payload = qs.stringify({...loginData, grant_type: 'password' });
 
-    return makeRequest({url: '/oauth/token', data: payload, method: 'POST', headers})
+    return makeRequest({ url: '/oauth/token', data: payload,  method: 'POST', headers });
 
 }
