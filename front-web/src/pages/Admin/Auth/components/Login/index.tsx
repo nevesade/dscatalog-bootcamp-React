@@ -4,10 +4,11 @@ import ButtonIcon from '../../../../../core/assets/styles/components/ButtonIcon'
 import AuthCard from '../Card';
 import './styles.scss';
 import { useForm } from 'react-hook-form';
+import { makeLogin } from '../../../../../core/utilis/request';
 
 type FormData = {
 
-    email: string;
+    username: string;
     password: string;
 }
 
@@ -21,6 +22,10 @@ const Login = () => {
 
         //Chamar API de autentificaçaõ
 
+        makeLogin(data);
+
+
+
     }
 
     return (
@@ -31,7 +36,7 @@ const Login = () => {
                     type="email"
                     className="form-control input-base margin-bottom-30"
                     placeholder="Email"
-                    name="email"
+                    name="username"
                     ref={register}
                  />
                 <input
