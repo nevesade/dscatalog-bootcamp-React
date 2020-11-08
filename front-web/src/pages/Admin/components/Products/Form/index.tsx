@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeRequest } from '../../../../../core/utilis/request';
+import { makePrivateRequest } from '../../../../../core/utilis/request';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
 
@@ -46,7 +46,7 @@ const Form = () => {
         
 
         //console.log(payload);
-        makeRequest({ url: '/products', method: 'POST', data: payload})
+        makePrivateRequest({ url: '/products', method: 'POST', data: payload})
         .then(() => {
                 setFormData({name: '', category: '', price: '',description: ''});
         });

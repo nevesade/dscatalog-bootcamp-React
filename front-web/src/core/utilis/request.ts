@@ -1,5 +1,5 @@
 import axios, {Method} from 'axios';
-import { CLIENT_ID, CLIENT_SECRET } from './auth';
+import { CLIENT_ID, CLIENT_SECRET, getSessionData } from './auth';
 import qs from 'qs';
 
 type RequestParams = {
@@ -30,8 +30,24 @@ const BASE_url = 'http://localhost:8080';
     });
 }
 
+
+export const makePrivateRequest = ({method ='GET', url, data, params } : RequestParams) => {
+
+    const sessionData = getSessionData();
+
+    const headers = {
+        
+        'Authorization' : `Bearer ${sessionData.access_token}`
+    }
+
+
+    return makeRequest({method, url, data, params, headers })
+}
+
 export const makeLogin = (loginData: LoginData) => {
 
+
+    //headers
     const token = `${CLIENT_ID}:${CLIENT_SECRET}`;
 
     const headers = {
@@ -40,6 +56,7 @@ export const makeLogin = (loginData: LoginData) => {
     }
 
 
+    //payload  or body request
     // '/oauth/token'
 
     //username=maria@gmail.com&password=123456&grant_type=password

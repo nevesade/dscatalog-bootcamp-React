@@ -22,7 +22,7 @@ const Login = () => {
 
     const onSubmit = (data: FormData) => {
 
-        console.log(data);
+        //console.log(data);
 
         //Chamar API de autentificaçaõ
 
