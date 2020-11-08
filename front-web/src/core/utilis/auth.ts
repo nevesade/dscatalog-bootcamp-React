@@ -64,10 +64,7 @@ export const  isTokenValid= () =>{
     //const  acessToken= getAcessTokenDecoded();
     //acessToken.exp();
 
-    if(Date.now() <= exp * 1000) {
-        return true;
-    }
-    return false;
+     return (Date.now() <= exp * 1000);
 
 
 }
