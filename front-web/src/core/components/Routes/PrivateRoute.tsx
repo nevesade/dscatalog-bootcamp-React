@@ -6,7 +6,7 @@ type Props = {
 
   children: React.ReactNode;
   path: string;
-  allowedRoutes?: Role[];
+  allowedRoutes?: Role[]
 
 
 }
@@ -23,7 +23,7 @@ const PrivateRoute = ({ children, path, allowedRoutes }: Props) => {
     <Route
       path={path}
       render={({ location }) => {
-        if(!isAuthenticated){
+        if(!isAuthenticated()){
           return (
             <Redirect
               to={{

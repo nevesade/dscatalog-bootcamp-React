@@ -22,8 +22,7 @@ const Login = () => {
     const { register, handleSubmit, errors } = useForm<FormData>(); // initialize the hook
     const [hasError, setHasError] = useState(false);
     const history = useHistory();
-    const location = useLocation<LocationState
-    >();
+    const location = useLocation<LocationState>();
 
     const {from} = location.state || { from: { pathname: "/admin" } };
 

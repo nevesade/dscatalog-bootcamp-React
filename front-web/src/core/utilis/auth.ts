@@ -1,5 +1,4 @@
 import jwtDecode from 'jwt-decode';
-
 export const CLIENT_ID = 'dscatalog';
 export const CLIENT_SECRET=  'dscatalog123';
 
@@ -50,6 +49,7 @@ export const getAcessTokenDecoded = () => {
     const sessionData = getSessionData();
 
     const tokenDecoded = jwtDecode(sessionData.access_token);
+
     return tokenDecoded as AcessToken;
 
 }
@@ -64,7 +64,7 @@ export const  isTokenValid= () =>{
     //const  acessToken= getAcessTokenDecoded();
     //acessToken.exp();
 
-     return (Date.now() <= exp * 1000);
+     return Date.now() <= exp * 1000;
 
 
 }
