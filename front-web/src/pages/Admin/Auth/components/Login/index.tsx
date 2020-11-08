@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ButtonIcon from '../../../../../core/assets/styles/components/ButtonIcon';
 import AuthCard from '../Card';
 import './styles.scss';
 import { useForm } from 'react-hook-form';
 import { makeLogin } from '../../../../../core/utilis/request';
+import { saveSessionData } from '../../../../../core/utilis/auth';
 
 type FormData = {
 
@@ -16,17 +17,20 @@ const Login = () => {
 
     const { register, handleSubmit } = useForm<FormData>(); // initialize the hook
     const [hasError, setHasError] = useState(false);
+    const history = useHistory();
 
 
     const onSubmit = (data: FormData) => {
 
-        //console.log(data);
+        console.log(data);
 
         //Chamar API de autentificaçaõ
 
         makeLogin(data)
-        .then(reponse => {
+        .then(response => {
             setHasError(false);
+            saveSessionData(response.data);
+            history.push('/admin/products');
         })
         .catch(() => {
             setHasError(true);
