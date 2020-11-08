@@ -16,7 +16,7 @@ type LoginResponse = {
 
 
 
-type  Role = ' ROLE_OPERATOR |  ROLE_ADMIN';
+export type  Role = 'ROLE_OPERATOR' |  'ROLE_ADMIN';
 
 
 
@@ -68,6 +68,7 @@ export const  isTokenValid= () =>{
 
 
 }
+
 export const isAuthenticated = () => {
 
       // "authData" no localStorage
@@ -77,4 +78,26 @@ export const isAuthenticated = () => {
 
     return sessionData.access_token && isTokenValid();
 
+}
+
+export const isAllowedByRole = (routeRoles: Role[] = []) => {
+
+    if(routeRoles.length === 0 ) {
+        return true;
+    }
+
+
+    /*
+
+    // or option on botton
+
+    const userToken = getAcessTokenDecoded();
+    const userRoles = userToken.authorities;
+
+
+    */
+
+    const {authorities} = getAcessTokenDecoded();
+
+    return routeRoles.some(role => authorities.includes(role));
 }
