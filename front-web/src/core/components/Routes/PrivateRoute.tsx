@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import { isAuthenticated } from '../../utilis/auth';
 
 type Props = {
 
@@ -11,12 +12,17 @@ type Props = {
 
 const PrivateRoute = ({ children, path }: Props) => {
     
-    const isAuthenticated = false;
+    //const isAuthenticated = false;
+
+    // "authData" no localStorage
+    //acess_token não pode estar espirado
+
+
     return (
       <Route
       path={path}
         render={({ location }) =>
-        isAuthenticated ? (
+        isAuthenticated() ? (
             children
           ) : (
             <Redirect
