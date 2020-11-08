@@ -30,7 +30,7 @@ const Login = () => {
         .then(response => {
             setHasError(false);
             saveSessionData(response.data);
-            history.push('/admin/products');
+            history.push('/admin');
         })
         .catch(() => {
             setHasError(true);

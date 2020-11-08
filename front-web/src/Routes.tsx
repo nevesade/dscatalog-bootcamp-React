@@ -1,37 +1,38 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
 import Navbar from './core/assets/styles/components/Navbar';
 import Admin from './pages/Admin';
 import Catalog from './pages/Catalog';
 import ProductDetails from './pages/Catalog/components/ProductDetails';
 import Home from './pages/Home';
 import Auth from './pages/Admin/Auth';
+import history from './core/utilis/history';
 
 
 const Routes = () => (
 
-    <BrowserRouter>
-    <Navbar/>
+    <Router history={history}>
+        <Navbar />
         <Switch>
             <Route path="/" exact>
-                <Home/>
+                <Home />
             </Route>
             <Route path="/products" exact>
-                <Catalog/>
+                <Catalog />
             </Route>
             <Route path="/products/:productId">
-                <ProductDetails/>
+                <ProductDetails />
             </Route>
-            <Redirect from="/admin" to="/admin/auth/login" exact/>
+            <Redirect from="/admin/auth" to="/admin/auth/login" exact />
             <Route path="/admin/auth">
-                <Auth/>
+                <Auth />
             </Route>
-            <Redirect from="/admin" to="/admin/products" exact/>
+            <Redirect from="/admin" to="/admin/products" exact />
             <Route path="/admin">
-                    <Admin/>
+                <Admin />
             </Route>
         </Switch>
-    </BrowserRouter>
+    </Router>
 
 );
 
