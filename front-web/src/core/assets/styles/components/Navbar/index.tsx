@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.scss';
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useLocation} from 'react-router-dom';
+import { getAcessTokenDecoded, logout } from '../../../../utilis/auth';
 
 const Navbar = () => {
-    const currentUser = '';
+    const  [currentUser, setCurrentUser]  = useState('');
+    const location = useLocation();
+
+    useEffect(() => {
+
+        const currentUserData = getAcessTokenDecoded();
+        setCurrentUser(currentUserData.user_name);
+
+    }, [location]);
+
+    const handleLogout = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        event.preventDefault();
+        logout();
+
+    }
 
     return (
 
@@ -41,7 +56,11 @@ const Navbar = () => {
                 { currentUser && (
                     <>
                         {currentUser}
-                        <a href="#logout"  className="nav-link active d-inline">
+                        <a href="#logout" 
+                         className="nav-link active d-inline"
+                         onClick={handleLogout}
+                         
+                         >
                             LOGOUT
             
                         </a>
