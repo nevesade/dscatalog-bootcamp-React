@@ -19,7 +19,7 @@ const Catalog = () => {
     //popular um estado no componente, e listar os produtos dinâmicamente
 
     const [productsResponse, setProductsResponse ] = useState<ProductsResponse>();
-    console.log(productsResponse);
+   // console.log(productsResponse);
     const [isLoading, setIsLoadind] = useState(false);
     const [activePage, setActivePage] = useState(0);
 
