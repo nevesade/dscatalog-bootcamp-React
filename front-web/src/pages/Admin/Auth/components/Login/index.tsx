@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { makeLogin } from '../../../../../core/utilis/request';
 import { saveSessionData } from '../../../../../core/utilis/auth';
 
-type FormData = {
+type FormState = {
 
     username: string;
     password: string;
@@ -19,7 +19,7 @@ type LocationState = {
 
 const Login = () => {
 
-    const { register, handleSubmit, errors } = useForm<FormData>(); // initialize the hook
+    const { register, handleSubmit, errors } = useForm<FormState>(); // initialize the hook
     const [hasError, setHasError] = useState(false);
     const history = useHistory();
     const location = useLocation<LocationState>();
@@ -27,7 +27,7 @@ const Login = () => {
     const {from} = location.state || { from: { pathname: "/admin" } };
 
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = (data: FormState) => {
 
         //console.log(data);
 
