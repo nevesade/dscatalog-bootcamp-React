@@ -3,8 +3,10 @@
     color: #ffffff;
     align-items: center;
     padding-left: 40px;
+    padding-right: 40px;
     margin-left: 0;
     margin-right: 0;
+    
 } 
 
 .nav-logo-text {
@@ -15,8 +17,14 @@
 {
    display: flex; 
    font-size: 18px;
-   width: 380px;
-   justify-content: space-between ;
+   //width: 380px;
+   justify-content: center ;
+
+
+   li:nth-child(2){
+       margin-right: 85px;
+       margin-left: 85px;
+   }
    a {
        font-style: normal;
        color: rgba(255, 255, 255, 0.5);
