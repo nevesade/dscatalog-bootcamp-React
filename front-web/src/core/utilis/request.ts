@@ -31,7 +31,7 @@ axios.interceptors.response.use(function (response) {
     // Do something with response error
     if (error.response.status === 401 ){
         //console.log('Redirecionar o usuário para Login');
-        history.push('/admin/auth/login');
+        history.push('/auth/login');
 
     }
     return Promise.reject(error);

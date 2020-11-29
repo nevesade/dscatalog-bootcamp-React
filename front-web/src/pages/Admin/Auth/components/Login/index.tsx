@@ -42,7 +42,7 @@ const Login = () => {
                 // history:
                 //admin/categories
                 //tentar ir para /admin/users
-                // /admin/auth/login
+                // //auth/login
                 // /admin/users
 
 
@@ -107,7 +107,7 @@ const Login = () => {
                     )}
 
                 </div>
-                <Link to="/admin/auth/recover" className="login-link-recover">
+                <Link to="/auth/recover" className="login-link-recover">
                     Esqueci a senha?
                 </Link>
                 <div className="login-submit">
@@ -118,7 +118,7 @@ const Login = () => {
                     <span className="not-registered">
                         Não tem cadastro?
                     </span>
-                    <Link to="/admin/auth/register" className="login-link-register">
+                    <Link to="/auth/register" className="login-link-register">
                         CADASTRAR
                     </Link>
                 </div>
