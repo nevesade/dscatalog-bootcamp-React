@@ -24,7 +24,7 @@ const Login = () => {
     const history = useHistory();
     const location = useLocation<LocationState>();
 
-    const {from} = location.state || { from: { pathname: "/admin" } };
+    const { from } = location.state || { from: { pathname: "/admin" } };
 
 
     const onSubmit = (data: FormState) => {
@@ -75,15 +75,15 @@ const Login = () => {
                         ref={register({
                             required: "Campo obrigatório",
                             pattern: {
-                              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                              message: "Email inválido"
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: "Email inválido"
                             }
-                          })}
+                        })}
                     />
                     {errors.username && (
 
                         <div className="invalid-feedback d-block">
-                           {errors.username.message}
+                            {errors.username.message}
 
                         </div>
                     )}
@@ -96,12 +96,12 @@ const Login = () => {
                         className={`form-control input-base ${errors.password ? 'is-invalid' : ''}`}
                         placeholder="Senha"
                         name="password"
-                        ref={register({  required: "Campo obrigatório", })}
+                        ref={register({ required: "Campo obrigatório", })}
                     />
                     {errors.password && (
 
                         <div className="invalid-feedback d-block">
-                           {errors.password.message}
+                            {errors.password.message}
 
                         </div>
                     )}
