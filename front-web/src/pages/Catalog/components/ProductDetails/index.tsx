@@ -22,7 +22,7 @@ const ProductDetails = () => {
     
 
 
-    console.log(isLoading);
+    //console.log(isLoading);
 
     useEffect(() => {
         setIsLoadind(true);

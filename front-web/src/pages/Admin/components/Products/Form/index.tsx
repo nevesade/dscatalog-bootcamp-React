@@ -12,7 +12,7 @@ import { useHistory, useParams } from 'react-router-dom';
 type FormState = {
     name: string;
     price: string;
-    //category: string;
+   
     description: string;
     imgUrl: string;
 
@@ -27,9 +27,12 @@ const Form = () => {
 
     const { register, handleSubmit, errors, setValue } = useForm<FormState>();
     const history = useHistory();
-    const {} = useParams();
+    
     const { productId } = useParams<ParamsType>();
     const isEditing = productId !== 'create';
+    const formTitle =  isEditing ? 'Editar produto' :  'cadastrar um produto'
+
+
 
     useEffect(() => {
      
@@ -37,24 +40,46 @@ const Form = () => {
                
             makeRequest({ url: `/products/${productId}` })
             .then(response => {
-                setValue('name', response.data.name );
-                setValue('price', response.data.price );
-                setValue('description', response.data.description );
-                setValue('imgUrl', response.data.imgUrl );
+                setValue('name', response.data.name);
+                setValue('price', response.data.price);
+                setValue('description', response.data.description);
+                setValue('imgUrl', response.data.imgUrl);
                
             })
         }   
 
     }, [productId, isEditing, setValue ]);
 
+    
+
     const onSubmit = (data: FormState) => {
 
         //console.log(data);
         
+        
+        makePrivateRequest({ 
+            url : isEditing ? `/products/${productId}`  : '/products',
+             method:  isEditing ? 'PUT' :  'POST',
+              data
+
+             })
+              .then(() => {
+
+                toast.info('Produto cadastrado com sucesso!');
+                history.push('/admin/products');
+    
+            })
+            .catch(() => {
+                toast.error('Erro ao salvar produto!')  
+            })
+
+        /*
         makePrivateRequest({ 
             url: isEditing? `/products/${productId}` :  '/products',
              method: isEditing ? 'PUT' :  'POST',
               data })
+
+              
         .then(() => {
 
             toast.info('Produto cadastrado com sucesso!');
@@ -62,8 +87,9 @@ const Form = () => {
 
         })
         .catch(() => {
-            toast.error('Erro ao salvar produto!')
+            toast.error('Erro ao salvar produto!')  
         })
+        */
 
 
     }
@@ -71,7 +97,8 @@ const Form = () => {
     return (
 
         <form onSubmit={handleSubmit(onSubmit)} >
-            <BaseForm title="cadastrar um produto" >
+            <BaseForm 
+            title={formTitle}>
                 <div className="row" >
                     <div className="col-6">
                         <div className="margin-bottom-30">

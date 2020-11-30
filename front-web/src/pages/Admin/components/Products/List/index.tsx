@@ -18,6 +18,7 @@ const List = () => {
 
     const [isLoading, setIsLoadind] = useState(false);
     const [activePage, setActivePage] = useState(0);
+    const history = useHistory();
 
     //quando o componente iniciar, buscar a lista de produots (opção de o fazer via um fetch ou axios(makerequest por exemplo))
 
@@ -33,7 +34,7 @@ const List = () => {
             page: activePage,
             linesPerPage: 4,
             direction: 'DESC',
-            orderBy:'name'
+            orderBy:'id'
 
         }
 
@@ -51,7 +52,7 @@ const List = () => {
     }, [activePage]);
 
 
-    const history = useHistory();
+    
     const handleCreate = () => {
         history.push('/admin/products/create');
     }
