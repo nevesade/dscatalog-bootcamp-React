@@ -32,7 +32,7 @@ const ProductDetails = () => {
 
     }, [productId]);
 
-    console.log(productId);
+    //console.log(productId);
 
     return (
         <div className="product-details-container">

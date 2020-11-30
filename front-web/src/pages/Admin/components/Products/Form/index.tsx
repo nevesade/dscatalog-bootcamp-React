@@ -1,10 +1,11 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import { toast} from 'react-toastify';
 import { useForm } from 'react-hook-form';
-import { makePrivateRequest } from '../../../../../core/utilis/request';
+import { makePrivateRequest, makeRequest } from '../../../../../core/utilis/request';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+
 
 
 
@@ -17,17 +18,43 @@ type FormState = {
 
 }
 
+type ParamsType = {
+    productId: string;
+}
+
 
 const Form = () => {
 
-    const { register, handleSubmit, errors } = useForm<FormState>();
+    const { register, handleSubmit, errors, setValue } = useForm<FormState>();
     const history = useHistory();
+    const {} = useParams();
+    const { productId } = useParams<ParamsType>();
+    const isEditing = productId !== 'create';
+
+    useEffect(() => {
+     
+        if(isEditing){
+               
+            makeRequest({ url: `/products/${productId}` })
+            .then(response => {
+                setValue('name', response.data.name );
+                setValue('price', response.data.price );
+                setValue('description', response.data.description );
+                setValue('imgUrl', response.data.imgUrl );
+               
+            })
+        }   
+
+    }, [productId, isEditing, setValue ]);
 
     const onSubmit = (data: FormState) => {
 
         //console.log(data);
         
-        makePrivateRequest({ url: '/products', method: 'POST', data })
+        makePrivateRequest({ 
+            url: isEditing? `/products/${productId}` :  '/products',
+             method: isEditing ? 'PUT' :  'POST',
+              data })
         .then(() => {
 
             toast.info('Produto cadastrado com sucesso!');
