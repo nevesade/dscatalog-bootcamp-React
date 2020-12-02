@@ -5,11 +5,14 @@ import { ProductsResponse } from '../../../../../core/types/Products';
 import { makePrivateRequest, makeRequest } from '../../../../../core/utilis/request';
 import Card from '../Card';
 import { toast } from 'react-toastify';
+import CardLoader from '../Loaders/ProductCardLoader';
+
 
 
 const List = () => {
 
     const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
+    const [isLoading, setIsLoadind] = useState(false);
     const [activePage, setActivePage] = useState(0);
     const history = useHistory();
 
@@ -22,8 +25,14 @@ const List = () => {
             orderBy: 'id'
 
         }
+        
+        setIsLoadind(true);
         makeRequest({ url: '/products', params })
             .then(response => setProductsResponse(response.data))
+            .finally(() =>  {
+                //finalizar o loader
+                setIsLoadind(false);
+            })
 
     }, [activePage])
 
@@ -66,11 +75,16 @@ const List = () => {
             </button>
 
             <div className="admin-list-container">
-                {productsResponse?.content.map(product => (
+                {isLoading ? <CardLoader/> :(
+                     productsResponse?.content.map(product => (
 
-                    <Card product={product} key={product.id} onRemove={onRemove} />
+                        <Card product={product} key={product.id} onRemove={onRemove} />
+    
+                    ))
 
-                ))}
+                )}
+
+               
 
                 {productsResponse && (
 
