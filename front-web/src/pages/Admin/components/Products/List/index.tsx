@@ -1,57 +1,61 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import Pagination from '../../../../../core/assets/styles/components/Pagination';
 import { ProductsResponse } from '../../../../../core/types/Products';
-import { makeRequest } from '../../../../../core/utilis/request';
+import { makePrivateRequest, makeRequest } from '../../../../../core/utilis/request';
 import Card from '../Card';
+import { toast } from 'react-toastify';
 
 
 const List = () => {
 
-
-
-
-    //quando a lista de produtos estiver disponivel,
-    //popular um estado no componente, e listar os produtos dinâmicamente
-
     const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
-
-   
     const [activePage, setActivePage] = useState(0);
     const history = useHistory();
 
-    //quando o componente iniciar, buscar a lista de produots (opção de o fazer via um fetch ou axios(makerequest por exemplo))
-
-    //limitaçoes do fetch
-    //muito verboso
-    // não tem suporte nativo para ler o progresso de upload de arquivo
-    // não te  suporte nativo para enviar query strings
-
-    console.log(productsResponse);
-    useEffect(() => {
+    const getProducts = useCallback(() => {
 
         const params = {
             page: activePage,
             linesPerPage: 4,
             direction: 'DESC',
-            orderBy:'id'
+            orderBy: 'id'
 
         }
-
-
-        //iniciar o loader
-        
         makeRequest({ url: '/products', params })
             .then(response => setProductsResponse(response.data))
-          
+
+    }, [activePage])
 
 
-    }, [activePage]);
+    useEffect(() => {
+
+        getProducts();
+
+    }, [getProducts]);
 
 
-    
     const handleCreate = () => {
         history.push('/admin/products/create');
+    }
+
+    const onRemove = (productId: number) => {
+        const confirm = window.confirm('Deseja realmente excluir  este produto?');
+
+        if(confirm){
+            makePrivateRequest({ url: `/products/${productId}`, method: 'DELETE' })
+            .then(() => {
+
+                toast.info('Produto removido com sucesso!');
+                getProducts();
+
+            })
+            .catch(() => {
+                toast.error('Erro ao remover produto!');
+            })
+        }
+       
+
     }
 
     return (
@@ -64,12 +68,11 @@ const List = () => {
             <div className="admin-list-container">
                 {productsResponse?.content.map(product => (
 
-                    <Card product={product} key={product.id} />
+                    <Card product={product} key={product.id} onRemove={onRemove} />
 
                 ))}
 
                 {productsResponse && (
-
 
                     <Pagination
                         totalPages={productsResponse.totalPages}
