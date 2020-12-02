@@ -1,7 +1,8 @@
 import React from 'react';
 import List from './List';
 import { Route, Switch } from 'react-router-dom';
-import From from './Form';
+
+import Form from './Form';
 
 const Products = () => {
     return (
@@ -12,7 +13,7 @@ const Products = () => {
                     <List />
                 </Route>
                 <Route path="/admin/products/:productId">
-                    <From />
+                    <Form />
                 </Route>
             </Switch>
         </div>

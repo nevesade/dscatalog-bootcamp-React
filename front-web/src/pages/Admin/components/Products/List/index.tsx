@@ -16,7 +16,7 @@ const List = () => {
 
     const [productsResponse, setProductsResponse] = useState<ProductsResponse>();
 
-    const [isLoading, setIsLoadind] = useState(false);
+   
     const [activePage, setActivePage] = useState(0);
     const history = useHistory();
 
@@ -40,13 +40,10 @@ const List = () => {
 
 
         //iniciar o loader
-        setIsLoadind(true);
+        
         makeRequest({ url: '/products', params })
             .then(response => setProductsResponse(response.data))
-            .finally(() => {
-                //finalizar o loader
-                setIsLoadind(false);
-            })
+          
 
 
     }, [activePage]);
