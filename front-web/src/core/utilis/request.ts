@@ -18,7 +18,9 @@ type LoginData = {
     password: string;
 }
 
-const BASE_url = 'http://localhost:8080';
+const BASE_url = process.env.REACT_APP_BACKEND_URL ??  'http://localhost:8080';
+
+//const BASE_url = 'https://nevesade-dscatalog.herokuapp.com/'
 
 // Add a response interceptor
 axios.interceptors.response.use(function (response) {
