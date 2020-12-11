@@ -3,6 +3,7 @@ import React from 'react';
 import {react, render, screen} from '@testing-library/react';
 
 import ProductPrice from '..'
+
 test('should render ProductPrice', () => {
 
     //Arramge
