@@ -9,7 +9,7 @@ const Home = () => (
     <div className= "home-container">
         <div className="row home-content card-base border-radius-20">
             <div className="col-6 " >
-            <h1 className="text-title">
+            <h1 className="text-title" >
                 Conheça o melhor <br/> catálogo de produtos
             </h1>
             <p className="text-subtitle">
@@ -22,7 +22,7 @@ const Home = () => (
 
             </div>
             <div className="col-6">
-                <MainImage className="main-image"/>
+                <MainImage className="main-image" data-testid="main-image"/>
 
             </div>
         </div>
