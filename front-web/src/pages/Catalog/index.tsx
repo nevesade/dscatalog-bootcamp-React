@@ -65,14 +65,10 @@ const Catalog = () => {
                     <Link to={`/products/${product.id}`} key={product.id} >
                         <ProductCard product = {product} />
                     </Link>
-                    
-                    
+                       
                 ) )
                 )}
-                
-                
-               
-                
+                     
             </div>
             {productsResponse && (
             
