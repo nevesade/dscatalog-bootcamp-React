@@ -135,13 +135,10 @@ const Form = () => {
                                 type="text"
                                 className="form-control mb-5"
                                 onChange={handleOnChange}
-
                                 placeholder="Nome do produto"
-
-
+                                data-testid="name"
                             />
                             {errors.name && (
-
                                 <div className="invalid-feedback d-block">
                                     {errors.name.message}
                                 </div>
@@ -172,6 +169,7 @@ const Form = () => {
                                 className="form-control"
                                 onChange={handleOnChange}
                                 placeholder="Preço"
+                                data-testid="price"
 
                             />
                             {errors.price && (
@@ -197,6 +195,7 @@ const Form = () => {
                                 className="form-control margin-bottom-30 input-base"
                                 onChange={handleOnChange}
                                 placeholder="Imagem do produto"
+                                data-testid="imgUrl"
 
 
                             />
@@ -222,6 +221,7 @@ const Form = () => {
                             className="form-control"
                             cols={30}
                             rows={10}
+                            data-testid="description"
 
                         />
                         {errors.description && (
